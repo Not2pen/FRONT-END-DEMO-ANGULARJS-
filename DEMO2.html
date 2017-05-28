@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script>
+    var app = angular.module('ngtabledemo',[]);
+    app.controller('ngtabledemoCtrl',function ($scope) {
+$scope.datas=[
+{date:'106/01/03',dealnum:'23550783',dealmoney:'4300648272',opening:'181.50',greatest:'183.50',lowerest:'181.00',ending:'183.00',differ:'+1.50',times:'8743'},
+{date:'106/01/04',dealnum:'24482374',dealmoney:'4478699942',opening:'183.00',greatest:'184.00',lowerest:'181.50',ending:'183.00',differ:'0.00',times:'8476'},
+{date:'106/01/05',dealnum:'21373561',dealmoney:'3913389163',opening:'182.00',greatest:'183.50',lowerest:'181.50',ending:'183.50',differ:'+0.50',times:'8297'},
+{date:'106/01/06',dealnum:'23120808',dealmoney:'4250912732',opening:'184.00',greatest:'184.50',lowerest:'183.50',ending:'184.00',differ:'+0.50',times:'9659'},
+{date:'106/01/09',dealnum:'18583788',dealmoney:'3419409204',opening:'184.00',greatest:'185.00',lowerest:'183.00',ending:'184.00',differ:'0.00',times:'5759'},
+{date:'106/01/10',dealnum:'20691305',dealmoney:'3811496280',opening:'184.50',greatest:'185.50',lowerest:'183.50',ending:'184.00',differ:'0.00',times:'7831'},
+{date:'106/01/11',dealnum:'29747168',dealmoney:'5438136536',opening:'185.00',greatest:'185.00',lowerest:'181.50',ending:'182.00',differ:'-2.00',times:'10509'},
+{date:'106/01/12',dealnum:'48599502',dealmoney:'8959263194',opening:'182.50',greatest:'185.50',lowerest:'182.50',ending:'184.50',differ:'+2.50',times:'13220'},
+{date:'106/01/13',dealnum:'53089358',dealmoney:'9622624651',opening:'180.50',greatest:'182.50',lowerest:'180.50',ending:'181.50',differ:'-3.00',times:'16366'},
+{date:'106/01/16',dealnum:'30878049',dealmoney:'5545432320',opening:'180.00',greatest:'180.50',lowerest:'179.00',ending:'179.50',differ:'-2.00',times:'13441'},
+{date:'106/01/17',dealnum:'13207419',dealmoney:'2386575839',opening:'180.50',greatest:'181.00',lowerest:'179.50',ending:'181.00',differ:'+1.50',times:'5771'},
+{date:'106/01/18',dealnum:'23810637',dealmoney:'4292682797',opening:'180.50',greatest:'181.00',lowerest:'179.50',ending:'181.00',differ:'0.00',times:'7783'},
+{date:'106/01/19',dealnum:'25935613',dealmoney:'4673783621',opening:'179.50',greatest:'181.00',lowerest:'179.50',ending:'180.50',differ:'-0.50',times:'8400'},
+{date:'106/01/20',dealnum:'42317086',dealmoney:'7658563990',opening:'181.00',greatest:'181.50',lowerest:'180.50',ending:'181.00',differ:'+0.50',times:'7803'},
+{date:'106/01/23',dealnum:'58299156',dealmoney:'10699572592',opening:'182.50',greatest:'185.00',lowerest:'182.50',ending:'185.00',differ:'+4.00',times:'13560'},
+{date:'106/01/24',dealnum:'72014239',dealmoney:'13356900945',opening:'185.00',greatest:'186.50',lowerest:'184.50',ending:'185.50',differ:'+0.50',times:'14227'},
+];
+$scope.sortfunc=function (x) {
+    $scope.sorter=x;
+}
+$scope.switch=true;
+$scope.switch2nd=function() {
+$("td.switchTrue2").toggleClass("switchFalse2");
+$("td.switchFalse2").toggleClass("switchTrue2");
+$("td.switchTrue2").toggleClass("switchFalse2");
+}
+    });
+    
+    </script>
+<style>
+    .switchTrue{
+        background-color: black;
+        color: yellow;
+    }
+    .switchFalse{
+        background-color: yellow;
+        color: black;
+    }
+    .switchTrue2{
+        background-color: black;
+        color: yellow;
+    }
+    .switchFalse2{
+        background-color: yellow;
+        color: black;
+    }
+
+
+</style>
+    <title>Document</title>
+</head>
+<body ng-app="ngtabledemo" ng-controller="ngtabledemoCtrl">
+    <div class="container">
+        
+    <table border="1" width=100% class="table">
+        <tr>  
+<th ng-click="sortfunc('date')">日期</th>
+<th ng-click="sortfunc('dealnum')">成交股數</th>
+<th ng-click="sortfunc('dealmoney')">成交金額</th>
+<th ng-click="sortfunc('opening')">開盤價</th>
+<th ng-click="sortfunc('greatest')">最高價</th>
+<th ng-click="sortfunc('lowerest')">最低價</th>
+<th ng-click="sortfunc('ending')">收盤價</th>
+<th ng-click="sortfunc('differ')">漲跌價差</th>
+<th ng-click="sortfunc('times')">成交筆數</th>
+</tr>
+<tr ng-repeat="x in datas | orderBy: sorter" >
+<td ng-if=$odd style="background-color:black;color:aliceblue">{{x.date|date}}</td>
+<td ng-if=$even style="background-color:white;color:black">{{x.date|date}}</td>
+<td ng-if=$odd style="background-color:black;color:aliceblue">{{x.dealnum|number}}</td>
+<td ng-if=$even style="background-color:white;color:black">{{x.dealnum|number}}</td>
+<td ng-if=$odd style="background-color:black;color:aliceblue">{{x.dealmoney|number}}</td>
+<td ng-if=$even style="background-color:white;color:black">{{x.dealmoney|number}}</td>
+<td ng-if=$odd style="background-color:black;color:aliceblue">{{x.opening|number}}</td>
+<td ng-if=$even style="background-color:white;color:black">{{x.opening|number}}</td>
+<td ng-if=$odd style="background-color:black;color:aliceblue">{{x.greatest|number}}</td>
+<td ng-if=$even style="background-color:white;color:black">{{x.greatest|number}}</td>
+<td ng-if=$odd style="background-color:black;color:aliceblue">{{x.lowerest|number}}</td>
+<td ng-if=$even style="background-color:white;color:black">{{x.lowerest|number}}</td>
+<td ng-if=$odd style="background-color:black;color:aliceblue">{{x.ending|number}}</td>
+<td ng-if=$even style="background-color:white;color:black">{{x.ending|number}}</td>
+<td ng-if=$odd style="background-color:black;color:aliceblue">{{x.differ|number}}</td>
+<td ng-if=$even style="background-color:white;color:black">{{x.differ|number}}</td>
+<td ng-if=$odd style="background-color:black;color:aliceblue">{{x.times|number}}</td>
+<td ng-if=$even style="background-color:white;color:black">{{x.times|number}}</td>
+</tr>
+    </table>
+
+<div class="panel panel-primary">
+      <div class="panel-heading">
+            <h3 class="panel-title">switch test!!</h3>
+      </div>
+      <div class="panel-body">
+          <button class="btn btn-default" ng-click="switch=!switch">test!!</button>
+          <table border="1" width=100% class="table">
+          <tr>  
+<th ng-click="sortfunc('date')">日期</th>
+<th ng-click="sortfunc('dealnum')">成交股數</th>
+<th ng-click="sortfunc('dealmoney')">成交金額</th>
+<th ng-click="sortfunc('opening')">開盤價</th>
+<th ng-click="sortfunc('greatest')">最高價</th>
+<th ng-click="sortfunc('lowerest')">最低價</th>
+<th ng-click="sortfunc('ending')">收盤價</th>
+<th ng-click="sortfunc('differ')">漲跌價差</th>
+<th ng-click="sortfunc('times')">成交筆數</th>
+</tr>
+           <tr ng-repeat="x in datas | orderBy: sorter" >
+               <td ng-class="switch?'switchTrue':'switchFalse'">{{x.date|date}}</td>
+               <td ng-class="switch?'switchFalse':'switchTrue'">{{x.dealnum|number}}</td>
+               <td ng-class="switch?'switchTrue':'switchFalse'">{{x.dealmoney|number}}</td>
+               <td ng-class="switch?'switchFalse':'switchTrue'">{{x.opening|number}}</td>
+               <td ng-class="switch?'switchTrue':'switchFalse'">{{x.greatest|number}}</td>
+               <td ng-class="switch?'switchFalse':'switchTrue'">{{x.lowerest|number}}</td>
+               <td ng-class="switch?'switchTrue':'switchFalse'">{{x.ending|number}}</td>
+               <td ng-class="switch?'switchFalse':'switchTrue'">{{x.differ|number}}</td>
+               <td ng-class="switch?'switchTrue':'switchFalse'">{{x.times|number}}</td>
+           </tr>
+           </table>
+           <div class="panel panel-primary">
+      <div class="panel-heading">
+            <h3 class="panel-title">switch test!!</h3>
+      </div>
+      <div class="panel-body">
+          <button class="btn btn-default" ng-click="switch2nd()">test!!</button>
+          <table border="1" width=100% class="table">
+          <tr>  
+<th ng-click="sortfunc('date')">日期</th>
+<th ng-click="sortfunc('dealnum')">成交股數</th>
+<th ng-click="sortfunc('dealmoney')">成交金額</th>
+<th ng-click="sortfunc('opening')">開盤價</th>
+<th ng-click="sortfunc('greatest')">最高價</th>
+<th ng-click="sortfunc('lowerest')">最低價</th>
+<th ng-click="sortfunc('ending')">收盤價</th>
+<th ng-click="sortfunc('differ')">漲跌價差</th>
+<th ng-click="sortfunc('times')">成交筆數</th>
+</tr>
+           <tr ng-repeat="x in datas | orderBy: sorter" >
+               <td ng-class="$odd?'switchTrue2':'switchFalse2'">{{x.date|date}}</td>
+               <td ng-class="$odd?'switchFalse2':'switchTrue2'">{{x.dealnum|number}}</td>
+               <td ng-class="$odd?'switchTrue2':'switchFalse2'">{{x.dealmoney|number}}</td>
+               <td ng-class="$odd?'switchFalse2':'switchTrue2'">{{x.opening|number}}</td>
+               <td ng-class="$odd?'switchTrue2':'switchFalse2'">{{x.greatest|number}}</td>
+               <td ng-class="$odd?'switchFalse2':'switchTrue2'">{{x.lowerest|number}}</td>
+               <td ng-class="$odd?'switchTrue2':'switchFalse2'">{{x.ending|number}}</td>
+               <td ng-class="$odd?'switchFalse2':'switchTrue2'">{{x.differ|number}}</td>
+               <td ng-class="$odd?'switchTrue2':'switchFalse2'">{{x.times|number}}</td>
+           </tr>
+           </table>
+      </div>
+</div>
+
+    
+    </div>
+</body>
+</html>
